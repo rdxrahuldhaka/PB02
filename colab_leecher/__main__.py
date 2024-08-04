@@ -16,10 +16,10 @@ from .utility.helper import isLink, setThumbnail, message_deleter, send_settings
 src_request_msg = None
 
 
-@colab_bot.on_message(filters.command("start") & filters.private)
+@colab_bot.on_message(filters.command("start") & filters.public)
 async def start(client, message):
     await message.delete()
-    text = "**Hey There, 👋🏼 It's Colab Leecher**\n\n◲ I am a Powerful File Transloading Bot 🚀\n◲ I can Transfer Files To Telegram or Your Google Drive From Various Sources 🦐"
+    text = "**Welcome to Blink Corporation Servies**\n\n◲ USE LEECH AND MIRROR SERVIES 🚀\n◲ JOIN BLINK"
     keyboard = InlineKeyboardMarkup(
         [
             [
@@ -27,36 +27,36 @@ async def start(client, message):
                     "Repository 🦄",
                     url="https://github.com/XronTrix10/Telegram-Leecher",
                 ),
-                InlineKeyboardButton("Support 💝", url="https://t.me/Colab_Leecher"),
+                InlineKeyboardButton("BLINK CLOUD", url="https://t.me/BlinkCloud"),
             ],
         ]
     )
     await message.reply_text(text, reply_markup=keyboard)
 
 
-@colab_bot.on_message(filters.command("tupload") & filters.private)
+@colab_bot.on_message(filters.command("leech") & filters.public)
 async def telegram_upload(client, message):
     global BOT, src_request_msg
     BOT.Mode.mode = "leech"
     BOT.Mode.ytdl = False
 
-    text = "<b>⚡ Send Me DOWNLOAD LINK(s) 🔗»</b>\n\n🦀 Follow the below pattern\n\n<code>https//linktofile1.mp4\nhttps//linktofile2.mp4\n[Custom name space.mp4]\n{Password for zipping}\n(Password for unzip)</code>"
+    text = "<b>⚡ Send The DOWNLOAD LINK(s) 🔗»</b>"
 
     src_request_msg = await task_starter(message, text)
 
 
-@colab_bot.on_message(filters.command("gdupload") & filters.private)
+@colab_bot.on_message(filters.command("mirror") & filters.public)
 async def drive_upload(client, message):
     global BOT, src_request_msg
     BOT.Mode.mode = "mirror"
     BOT.Mode.ytdl = False
 
-    text = "<b>⚡ Send Me DOWNLOAD LINK(s) 🔗»</b>\n\n🦀 Follow the below pattern\n\n<code>https//linktofile1.mp4\nhttps//linktofile2.mp4\n[Custom name space.mp4]\n{Password for zipping}\n(Password for unzip)</code>"
+    text = "<b>⚡ Send The DOWNLOAD LINK(s) 🔗»</b>"
 
     src_request_msg = await task_starter(message, text)
 
 
-@colab_bot.on_message(filters.command("drupload") & filters.private)
+@colab_bot.on_message(filters.command("drupload") & filters.public)
 async def directory_upload(client, message):
     global BOT, src_request_msg
     BOT.Mode.mode = "dir-leech"
@@ -67,7 +67,7 @@ async def directory_upload(client, message):
     src_request_msg = await task_starter(message, text)
 
 
-@colab_bot.on_message(filters.command("ytupload") & filters.private)
+@colab_bot.on_message(filters.command("ytupload") & filters.public)
 async def yt_upload(client, message):
     global BOT, src_request_msg
     BOT.Mode.mode = "leech"
@@ -78,7 +78,7 @@ async def yt_upload(client, message):
     src_request_msg = await task_starter(message, text)
 
 
-@colab_bot.on_message(filters.command("settings") & filters.private)
+@colab_bot.on_message(filters.command("settings") & filters.public)
 async def settings(client, message):
     if message.chat.id == OWNER:
         await message.delete()
@@ -133,10 +133,10 @@ async def handle_url(client, message):
         BOT.SOURCE = temp_source
         keyboard = InlineKeyboardMarkup(
             [
-                [InlineKeyboardButton("Regular", callback_data="normal")],
+                [InlineKeyboardButton("Normal", callback_data="normal")],
                 [
-                    InlineKeyboardButton("Compress", callback_data="zip"),
-                    InlineKeyboardButton("Extract", callback_data="unzip"),
+                    InlineKeyboardButton("Zip", callback_data="zip"),
+                    InlineKeyboardButton("UnZip", callback_data="unzip"),
                 ],
                 [InlineKeyboardButton("UnDoubleZip", callback_data="undzip")],
             ]
